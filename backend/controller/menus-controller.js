@@ -89,13 +89,24 @@ const getMenuById = async (req, res) => {
 
 const getMenusByCategory = async (req, res) => {
     try {
-        const { categoryId } = req.params;
-        const menus = await Menu.find({ category: categoryId })
-            .populate('customisations');
+        const { name } = req.params;
+
+        // Find the category by name
+        const category = await Category.findOne({ name });
+        if (!category) {
+            return res.status(404).json({ message: "Category not found" });
+        }
+
+        const menus = await Menu.find({ category: category._id }).populate('customisations');
+
+        if (!menus || menus.length === 0) {
+            return res.status(404).json({ message: "No menus found for this category" });
+        }
+
         res.json(menus);
     } catch (err) {
-        res.status(500).json({ message: err.message });
         console.error(err);
+        res.status(500).json({ message: err.message });
     }
 };
 

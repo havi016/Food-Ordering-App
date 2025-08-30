@@ -5,10 +5,12 @@ import CustomInput from "@/components/CustomInput";
 import CustomButton from "@/components/CustomButton";
 import {getCurrentUser, signIn} from "@/src/api/authApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import useAuthStore from "@/store/auth.store";
 
 const SignIn = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [form, setForm] = useState({email: '', password: ''})
+    const authStore = useAuthStore(); // <- here
 
 
     const submit = async () => {
@@ -18,25 +20,25 @@ const SignIn = () => {
         setIsSubmitting(true)
 
         try {
-
-            const response = await signIn(email, password)
-
+            const response = await signIn(email, password);
             const token = response.data.token;
 
-            console.log(token);
-            await AsyncStorage.setItem("token", token);
+            await AsyncStorage.setItem('token', token);
 
-            const userResponse = await getCurrentUser()
-            console.log(userResponse)
+            // update store with authenticated user
+            await authStore.fetchAuthenticatedUser();
 
-            Alert.alert("Success", `Welcome ${userResponse.name}`);
-            router.replace('/')
+            // redirect to home
+            router.replace('/');
+
+            Alert.alert('Success', `Welcome ${authStore.user?.name}`);
         } catch (error: any) {
             Alert.alert('Error', error.message);
         } finally {
-            setIsSubmitting(false)
+            setIsSubmitting(false);
         }
-    }
+    };
+
 
     return (
         <View className="gap-10 bg-white rounded-lg p-5 mt-5">

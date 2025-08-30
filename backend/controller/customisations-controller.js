@@ -36,6 +36,25 @@ const getCustomisationById = async (req, res) => {
     }
 };
 
+const updateCustomisation = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, price, type } = req.body;
+
+        const updated = await Customisation.findByIdAndUpdate(
+            id,
+            { name, price, type },
+            { new: true, runValidators: true }
+        ).populate('menus');
+
+        if (!updated) return res.status(404).json({ message: "Customisation not found" });
+
+        res.json(updated);
+    } catch (err) {
+        res.status(400).json({ message: "Error updating customisation", err });
+    }
+};
+
 const deleteCustomisation = async (req, res) => {
     try {
         const { id } = req.params;
@@ -60,5 +79,6 @@ module.exports = {
     createCustomisation,
     getAllCustomisations,
     getCustomisationById,
+    updateCustomisation,
     deleteCustomisation
 };

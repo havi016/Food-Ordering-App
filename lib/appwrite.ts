@@ -1,57 +1,23 @@
-import {Account, Avatars, Client, Databases, ID} from "react-native-appwrite";
-import {CreateUserParams, SignInParams} from "@/type";
+import { Account, Client, Databases, Storage, ID, Avatars } from "react-native-appwrite";
 
 export const appwriteConfig = {
-    endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT,
+    endpoint: "https://fra.cloud.appwrite.io/v1",
     platform: "com.havi.foodordering",
-    projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
+    projectId: "68a1eeb2000584ba1377",
     databaseId: '68a1f210000c1589f445',
     userCollectionId: '68a1f2380026da7fc7b7',
     bucketId: '68aa0148002a0ecc4b59',
-}
+};
 
-export const client = new  Client();
+export const client = new Client();
 
 client
     .setEndpoint(appwriteConfig.endpoint!)
     .setProject(appwriteConfig.projectId!)
-    .setPlatform (appwriteConfig.platform)
+    .setPlatform(appwriteConfig.platform);
 
 export const account = new Account(client);
 export const databases = new Databases(client);
-const avatars = new Avatars(client);
-
-export const createUser = async ({ email, password, name} : CreateUserParams) => {
-    try{
-        const newAccount = await account.create(ID.unique(), email, password, name )
-        if (!newAccount) throw Error;
-
-        await signIn( {email, password});
-
-        const avatarUrl = avatars.getInitialsURL(name);
-
-        const newUser = await databases.createDocument(
-            appwriteConfig.databaseId,
-            appwriteConfig.userCollectionId,
-            ID.unique(),
-            {accountId: newAccount.$id, email, name ,avatar:  avatarUrl}
-        );
-
-        return newUser;
-
-    } catch(e) {
-        throw new Error(e as string);
-    }
-
-
-}
-
-export const signIn = async ({email, password}: SignInParams) => {
-    try {
-        const newSession = await account.createEmailPasswordSession(email, password);
-    } catch(e) {
-        throw new Error(e as string);
-    }
-
-}
-
+export const storage = new Storage(client);
+export const avatars = new Avatars(client);
+export const IDGenerator = ID; // export ID so you can use it for unique file IDs

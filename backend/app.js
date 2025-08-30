@@ -4,7 +4,7 @@ const cors = require('cors');
 const userRouter = require('./routes/user-routes');
 const categoryRouter = require('./routes/categories-routes');
 const customisationRouter = require('./routes/customisation-routes');
-const menuRouter = require('./routes/menus-routes'); // assuming you have this
+const menuRouter = require('./routes/menus-routes');
 
 const app = express();
 app.use(cors({

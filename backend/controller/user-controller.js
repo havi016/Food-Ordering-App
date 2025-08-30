@@ -123,7 +123,7 @@ const loginUser = async (req, res, next) => {
             return res.status(401).json({message:"Invalid password"});
         }
 
-        const token = jwt.sign({ id: user.id}, "secret_key", { expiresIn: "1h"})
+        const token = jwt.sign({ id: user.id}, "secret_key", { expiresIn: "2h"})
         res.status(200).json({token});
 
     }catch(e){next(e)}

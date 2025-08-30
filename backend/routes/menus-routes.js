@@ -14,7 +14,7 @@ const {
 const router = express.Router();
 
 router.get('/search', searchMenus);
-router.get('/category/:categoryId', getMenusByCategory);
+router.get('/category/:name', getMenusByCategory);
 
 router.get('/:id', getMenuById);
 
