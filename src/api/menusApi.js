@@ -51,7 +51,7 @@ export const getMenusSortedByRating = async () => {
 export const searchMenus = async (query) => {
     try {
         const { data } = await axios.get(`${API_URL}/search`, {
-            params: { q: query },
+            params: { query },
         });
         return data;
     } catch (error) {
@@ -70,3 +70,4 @@ export const getAllCategories = async () => {
     }
 
 }
+
