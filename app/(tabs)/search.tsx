@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react';
 import {getAllCategories, getAllMenus, getMenusByCategory} from '@/src/api/menusApi';
 import {useTabSlot} from "expo-router/ui";
 import CartButton from "@/components/CartButton";
+import cn from "clsx";
+import MenuCard from "@/components/MenuCard";
 
 interface Menu {
     _id: string;
@@ -67,9 +69,11 @@ const Search = () => {
             <FlatList
                 data={menus}
                 renderItem={({ item, index }) => {
+                    const isFirstRightColItem = index % 2 === 0;
+
                     return (
-                        <View className="flex-1 max-w-[48%]">
-                            <Text>menu card</Text>
+                        <View className={cn("flex-1 max-w-[48%]", !isFirstRightColItem ? "mt-10" : "mt-0")}>
+                            <MenuCard item={item as Menu}/>
                         </View>
                     )
                 }}
