@@ -31,7 +31,9 @@ const SignIn = () => {
             // redirect to home
             router.replace('/');
 
-            Alert.alert('Success', `Welcome ${authStore.user?.name}`);
+            const user = await getCurrentUser();
+
+            Alert.alert('Success', `Welcome ${user.name}`);
         } catch (error: any) {
             Alert.alert('Error', error.message);
         } finally {

@@ -26,14 +26,14 @@ export interface User extends Models.Document {
 }
 
 export interface CartCustomization {
-    id: string;
+    _id: string;
     name: string;
     price: number;
     type: string;
 }
 
 export interface CartItemType {
-    id: string; // menu item id
+    _id: string; // menu item id
     name: string;
     price: number;
     image_url: string;
@@ -44,9 +44,9 @@ export interface CartItemType {
 export interface CartStore {
     items: CartItem[];
     addItem: (item: Omit<CartItem, "quantity">) => void;
-    removeItem: (id: string, customizations: CartCustomization[]) => void;
-    increaseQty: (id: string, customizations: CartCustomization[]) => void;
-    decreaseQty: (id: string, customizations: CartCustomization[]) => void;
+    removeItem: (_id: string, customizations: CartCustomization[]) => void;
+    increaseQty: (_id: string, customizations: CartCustomization[]) => void;
+    decreaseQty: (_id: string, customizations: CartCustomization[]) => void;
     clearCart: () => void;
     getTotalItems: () => number;
     getTotalPrice: () => number;

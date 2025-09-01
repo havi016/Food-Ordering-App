@@ -8,7 +8,6 @@ import Filter from "@/components/Filter";
 import SearchBar from "@/components/SearchBar";
 import {MenuItem} from "@/type";
 import {useLocalSearchParams} from "expo-router";
-import {useDebouncedCallback} from "use-debounce";
 
 interface Menu {
     _id: string;
@@ -116,10 +115,9 @@ const Search = () => {
                             <View className="flex-start">
                                 <Text className={"small-bold uppercase text-primary"}>Search</Text>
                                 <View className={" flex-start flex-row gap-x-1 mt-0.5"}>
-                                    <Text className={"parigraph-semibold text-dark-100"}>Find your favourtite food</Text>
+                                    <Text className={"paragraph-semibold text-dark-100"}>Find your favourite food</Text>
                                 </View>
                             </View>
-
                             <CartButton/>
                         </View>
                         <SearchBar />
