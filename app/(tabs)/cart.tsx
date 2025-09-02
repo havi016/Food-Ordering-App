@@ -4,7 +4,7 @@ import {useCartStore} from "@/store/cart.store";
 import CustomHeader from "@/components/CustomHeader";
 import cn from "clsx";
 import CustomButton from "@/components/CustomButton";
-import {PaymentInfoStripeProps} from "@/type";
+import {PaymentInfoStripeProps, CartCustomization} from "@/type";
 import CartItem from "../../components/CartItem";
 
 const PaymentInfoStripe = ({ label,  value,  labelStyle,  valueStyle, }: PaymentInfoStripeProps) => (
@@ -23,6 +23,7 @@ const Cart = () => {
 
     const totalItems = getTotalItems()
     const totalPrice = getTotalPrice()
+    console.log(totalPrice)
 
 
     return (
@@ -30,7 +31,10 @@ const Cart = () => {
             <FlatList
             data={items}
             renderItem={ ({item }) => <CartItem item = {item}/>}
-            keyExtractor={(item) => `${item._id}`}
+            keyExtractor={(item, index) => {
+                const customizationIds = item.customizations?.map((c: CartCustomization) => c._id).join("-") || "none";
+                return `${item._id}-${customizationIds}-${index}`;
+            }}
             contentContainerClassName ="pb-28 px-5 pt-5"
             ListHeaderComponent = {() => <CustomHeader title = "Your Cart" />}
             ListEmptyComponent={() => (

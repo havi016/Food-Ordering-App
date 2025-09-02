@@ -6,6 +6,7 @@ import {images} from "@/constants";
 import {TabBarIconProps} from "@/type";
 import cn from "clsx";
 
+
 const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
     <View className = "tab-icon pb-3">
         <Image source={icon} className = "size-7" resizeMode={"contain"} tintColor = {focused ? '#FE8C00' : '#5D5F6D'} />

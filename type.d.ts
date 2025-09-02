@@ -10,7 +10,7 @@ export interface MenuItem extends Models.Document {
     protein: number;
     price: number;
     category: string;
-    customisations: string[];
+    customisations: CartCustomization[];
 }
 
 export interface Category extends Models.Document {
@@ -30,6 +30,7 @@ export interface CartCustomization {
     name: string;
     price: number;
     type: string;
+    quantity: number;
 }
 
 export interface CartItemType {
@@ -38,7 +39,7 @@ export interface CartItemType {
     price: number;
     image_url: string;
     quantity: number;
-    customizations?: CartCustomization[];
+    customisations?: CartCustomization[];
 }
 
 export interface CartStore {
@@ -47,6 +48,7 @@ export interface CartStore {
     removeItem: (_id: string, customizations: CartCustomization[]) => void;
     increaseQty: (_id: string, customizations: CartCustomization[]) => void;
     decreaseQty: (_id: string, customizations: CartCustomization[]) => void;
+    updateCustomisationQty: (id: string, customId: string, quantity: number) => void; // <-- add this
     clearCart: () => void;
     getTotalItems: () => number;
     getTotalPrice: () => number;

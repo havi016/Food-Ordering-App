@@ -77,6 +77,22 @@ export const useCartStore = create<CartStore>((set, get) => ({
         });
     },
 
+    updateCustomisationQty: (_id, customId, quantity) => {
+        set({
+            items: get().items.map((i) => {
+                if (i._id === _id && i.customisations) {
+                    const updatedCustoms = i.customisations
+                        .map((c: CartCustomization) =>
+                            c._id === customId ? { ...c, quantity } : c
+                        )
+                        .filter((c: CartCustomization) => c.quantity! > 0);
+                    return { ...i, customisations: updatedCustoms };
+                }
+                return i;
+            }),
+        });
+    },
+
     clearCart: () => set({ items: [] }),
 
     getTotalItems: () =>
@@ -87,7 +103,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
             const base = item.price;
             const customPrice =
                 item.customisations?.reduce(
-                    (s: number, c: CartCustomization) => s + c.price,
+                    (s: number, c: CartCustomization) => s + c.price * (c.quantity || 1),
                     0
                 ) ?? 0;
             return total + item.quantity * (base + customPrice);

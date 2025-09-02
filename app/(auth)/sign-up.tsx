@@ -29,7 +29,6 @@ const SignUp = () => {
             await AsyncStorage.setItem("token", token);
 
             const userResponse = await getCurrentUser()
-            console.log(userResponse)
 
             router.replace('/');
 
