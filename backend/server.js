@@ -1,10 +1,10 @@
+const dotenv = require('dotenv');
+const path = require('path');
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
 const mongoose = require('mongoose');
 const app = require('./app'); // your Express app
 const os = require('os');
-const dotenv = require('dotenv');
-
-const path = require('path');
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const PORT = 3000;
 

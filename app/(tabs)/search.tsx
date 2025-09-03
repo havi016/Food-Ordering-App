@@ -53,7 +53,6 @@ const Search = () => {
                 console.error("Error fetching initial data:", error);
             }
         };
-        console.log(categories);
         fetchInitialData();
     }, []);
 

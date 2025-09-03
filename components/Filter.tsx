@@ -1,6 +1,5 @@
 import {View, Text, FlatList, TouchableOpacity, Platform} from 'react-native'
 import React, {useEffect, useState} from 'react'
-import {getAllCategories, getAllMenus, getMenusByCategory} from "@/src/api/menusApi";
 import {Category, MenuItem} from "@/type";
 import {router, useLocalSearchParams} from "expo-router";
 import cn from "clsx";

@@ -6,6 +6,9 @@ import cn from "clsx";
 import CustomButton from "@/components/CustomButton";
 import {PaymentInfoStripeProps, CartCustomization} from "@/type";
 import CartItem from "../../components/CartItem";
+import CheckoutButton from "@/components/CheckoutButton";
+import { StripeProvider } from '@stripe/stripe-react-native';
+
 
 const PaymentInfoStripe = ({ label,  value,  labelStyle,  valueStyle, }: PaymentInfoStripeProps) => (
     <View className="flex-between flex-row my-1">
@@ -23,7 +26,6 @@ const Cart = () => {
 
     const totalItems = getTotalItems()
     const totalPrice = getTotalPrice()
-    console.log(totalPrice)
 
 
     return (
@@ -72,8 +74,9 @@ const Cart = () => {
                             valueStyle={"base-bold !text-dark-100 !text-right"}
                         />
                     </View>
-
-                    <CustomButton title = "Order Now " />
+                    <StripeProvider publishableKey={"pk_test_51S2wu4J4J3qZoAxAnvoIb5saJvK4TxSraJWvtvJzb9Djp9jvPR2tRkG207fsR3M4rHofAIRUaMKT8ByqjRfgXcwa00OWzfK4cT"}>
+                        <CheckoutButton totalPrice={Number((totalPrice + 5).toFixed(2))} />
+                    </StripeProvider>
                 </View>
                 )}
             />

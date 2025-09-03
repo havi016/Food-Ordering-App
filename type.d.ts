@@ -20,6 +20,7 @@ export interface Category extends Models.Document {
 }
 
 export interface User extends Models.Document {
+    _id: string;
     name: string;
     email: string;
     avatar: string;
@@ -75,6 +76,15 @@ interface CustomButtonProps {
     textStyle?: string;
     isLoading?: boolean;
 }
+
+interface CheckoutButtonProps {
+    style?: string;
+    leftIcon?: React.ReactNode;
+    textStyle?: string;
+    isLoading?: boolean;
+    totalPrice?: number | 0;
+}
+
 
 interface CustomHeaderProps {
     title?: string;

@@ -5,6 +5,8 @@ const userRouter = require('./routes/user-routes');
 const categoryRouter = require('./routes/categories-routes');
 const customisationRouter = require('./routes/customisation-routes');
 const menuRouter = require('./routes/menus-routes');
+const paymentRouter = require('./routes/payment-routes');
+const orderRouter = require('./routes/order-routes');
 
 const app = express();
 app.use(cors({
@@ -19,6 +21,8 @@ app.use("/users", userRouter);
 app.use("/categories", categoryRouter);
 app.use("/customisations", customisationRouter);
 app.use("/menus", menuRouter);
+app.use("/payments", paymentRouter)
+app.use("/orders", orderRouter)
 
 // global error handler
 app.use((err, req, res, next) => {
