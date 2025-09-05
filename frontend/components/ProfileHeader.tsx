@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Image, Text } from "react-native";
-import avatar from "../assets/images/avatar.png";
-import icon from "../assets/images/icon.png";
+import avatar from "@/assets/images/avatar.png";
+import icon from "@/assets/images/icon.png";
 import {User} from "@/type";
 
 const ProfileHeader = ({ user }: { user: User }) => {

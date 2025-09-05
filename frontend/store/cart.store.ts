@@ -1,4 +1,4 @@
-import { CartCustomization, CartStore } from "@/type";
+import { CartCustomization, CartStore } from "../type";
 import { create } from "zustand";
 
 function areCustomisationsEqual(

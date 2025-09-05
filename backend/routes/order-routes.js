@@ -7,7 +7,7 @@ router.post("/create-order", async (req, res) => {
     try {
         const { userId, items, total, paymentIntentId } = req.body;
 
-        // Optional: verify payment with Stripe
+        //verify payment with Stripe
         const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId.split("_secret_")[0]);
 
         if (paymentIntent.status !== "succeeded") {

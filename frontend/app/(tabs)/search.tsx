@@ -6,31 +6,13 @@ import cn from "clsx";
 import MenuCard from "@/components/MenuCard";
 import Filter from "@/components/Filter";
 import SearchBar from "@/components/SearchBar";
-import {MenuItem} from "@/type";
+import {MenuItem, Category} from "@/type";
 import {useLocalSearchParams} from "expo-router";
 
-interface Menu {
-    _id: string;
-    name: string;
-    description: string;
-    imageUrl: string;
-    rating: number;
-    calories: number;
-    protein: number;
-    price: number;
-    category: string;
-    customisations: string[];
-}
-
-interface Category {
-    _id: string;       // MongoDB will always add this
-    name: string;
-    description: string;
-}
 
 const Search = () => {
 
-    const [menus, setMenus] = useState<Menu[]>([])
+    const [menus, setMenus] = useState<MenuItem[]>([])
     const [categories, setCategories] = useState<Category[]>([])
 
     const [isLoading, setIsLoading] = useState(false)
@@ -59,7 +41,7 @@ const Search = () => {
     useEffect(() => {
         const fetchMenus = async () => {
             try {
-                let fetchedMenus: Menu[];
+                let fetchedMenus: MenuItem[];
 
                 if (!selectedCategory) {
                     fetchedMenus = await getAllMenus();

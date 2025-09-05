@@ -1,5 +1,4 @@
 import axios from "axios";
-import {getCustomisationById} from "@/backend/controller/customisations-controller";
 
 const API_URL = "http://192.168.1.76:3000/menus";
 const categoryUrl = "http://192.168.1.76:3000/categories";
@@ -16,7 +15,6 @@ export const getAllMenus = async () => {
     }
 };
 
-// Get menu by ID
 export const getMenuById = async (id) => {
     try {
         const { data } = await axios.get(`${API_URL}/${id}`);
@@ -27,7 +25,6 @@ export const getMenuById = async (id) => {
     }
 };
 
-// Get menus by category
 export const getMenusByCategory = async (name) => {
     try {
         const { data } = await axios.get(`${API_URL}/category/${name}`);
@@ -38,7 +35,6 @@ export const getMenusByCategory = async (name) => {
     }
 };
 
-// Get menus sorted by rating
 export const getMenusSortedByRating = async () => {
     try {
         const { data } = await axios.get(`${API_URL}/sorted/by-rating`);
@@ -49,7 +45,6 @@ export const getMenusSortedByRating = async () => {
     }
 };
 
-// Search menus
 export const searchMenus = async (query) => {
     try {
         const { data } = await axios.get(`${API_URL}/search`, {

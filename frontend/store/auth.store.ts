@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import {User} from "@/type";
+import {User} from "../type";
 import {getCurrentUser} from "@/src/api/authApi";
 
 

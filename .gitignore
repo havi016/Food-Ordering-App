@@ -7,7 +7,7 @@ node_modules/
 .expo/
 dist/
 web-build/
-expo-env.d.ts
+frontend/expo-env.d.ts
 
 # Native
 .kotlin/
@@ -43,4 +43,5 @@ app-example
 jsons
 
 .env
-.env
+.env.local
+.idea

@@ -13,8 +13,6 @@ const createPaymentIntent = async (req, res) => {
             }
         });
 
-        // return the secret
-
         res.json({paymentIntent: paymentIntent.client_secret});
 
     } catch(err){

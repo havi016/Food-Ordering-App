@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://192.168.1.77:3000/users"; // /users to match router
+const API_URL = "http://192.168.1.77:3000/users";
 
 export const getAllUsers = async (token) => {
     return axios.get(API_URL, {
