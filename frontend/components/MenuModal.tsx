@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, Image, Modal, ScrollView, TouchableOpacity, Platform } from "react-native";
 import { MenuItem, CartCustomization } from "@/type";
 import { useCartStore } from "@/store/cart.store";
@@ -39,6 +39,8 @@ const MenuModal = ({ item, visible, onClose, availableCustomisations = [] }: Men
         onClose();
     }
 
+    useEffect(() => {})
+
     return (
         <Modal visible={visible} transparent animationType="slide">
             <TouchableOpacity
@@ -61,7 +63,6 @@ const MenuModal = ({ item, visible, onClose, availableCustomisations = [] }: Men
                         <Text className="text-center text-gray-500 mb-1">Calories: {item.calories}, Protein: {item.protein}</Text>
                         <Text className="text-center text-gray-800 font-semibold mb-1">Price: £{item.price}</Text>
 
-                        {/* Dropdown for customisations */}
                         <TouchableOpacity
                             onPress={() => setDropdownOpen(!dropdownOpen)}
                             className="bg-blue-400 rounded-lg p-3 mb-2"

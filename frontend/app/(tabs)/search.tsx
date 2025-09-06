@@ -7,7 +7,7 @@ import MenuCard from "@/components/MenuCard";
 import Filter from "@/components/Filter";
 import SearchBar from "@/components/SearchBar";
 import {MenuItem, Category} from "@/type";
-import {useLocalSearchParams} from "expo-router";
+import {router, useLocalSearchParams} from "expo-router";
 
 
 const Search = () => {
@@ -21,7 +21,6 @@ const Search = () => {
     const [query, setQuery] = useState('');
 
     const searchParams = useLocalSearchParams<{ query?: string; category?: string | string[] }>();
-
 
     useEffect(() => {
         const fetchInitialData = async () => {

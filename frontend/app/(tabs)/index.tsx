@@ -1,18 +1,33 @@
 import "../globals.css"
 import {FlatList, Pressable, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from 'react-native'
 import {images, offers} from "@/constants";
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import {Image} from "react-native";
 import cn from "clsx";
 import CartButton from "@/components/CartButton";
-import useAuthStore from "@/store/auth.store";
+import {router} from "expo-router";
+
 export default function Index() {
 
-    const { user } = useAuthStore();
+    const searchMap = {
+        "SUMMER COMBO": "Burgers",
+        "BURGER BASH": "Burgers",
+        "PIZZA PARTY": "Pizzas",
+        "BURRITO DELIGHT": "Burritos"
+    }
 
-    console.log("useAuthStore", JSON.stringify(user, null, 2));
+    const handleOfferPress = (title: string) => {
+        const name = searchMap[title as keyof typeof searchMap];
+        router.push({
+            pathname: '/search',
+            params: {
+                category: name,
+            },
+        });
+    }
 
     return (
+
         <SafeAreaView className={"flex-1 bg-gray-50 my-8 "}>
 
             <FlatList
@@ -26,7 +41,9 @@ export default function Index() {
                             <Pressable
                                 className = {cn("offer-card", isEven ? 'flex-row-reverse' : 'flex-row')}
                                 style={{backgroundColor: item.color }}
-                                android_ripple={{ color: '#fffff22'     }}>
+                                android_ripple={{ color: '#fffff22'     }}
+                                onPress={() => {handleOfferPress(item.title)}}
+                                >
 
                                 {({ pressed }) => (
                                     <Fragment>

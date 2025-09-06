@@ -1,6 +1,5 @@
-import { Models } from "react-native-appwrite";
 
-export interface MenuItem extends Models.Document {
+export interface MenuItem{
     _id: string;
     name: string;
     description: string;
@@ -13,13 +12,13 @@ export interface MenuItem extends Models.Document {
     customisations: CartCustomization[];
 }
 
-export interface Category extends Models.Document {
+export interface Category{
     _id: string;
     name: string;
     description: string;
 }
 
-export interface User extends Models.Document {
+export interface User{
     _id: string;
     name: string;
     email: string;

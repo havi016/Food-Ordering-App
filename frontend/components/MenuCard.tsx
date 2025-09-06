@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, Image, TouchableOpacity, Platform } from "react-native";
 import { MenuItem } from "@/type";
 import { appwriteConfig } from "@/lib/appwrite";
 import MenuModal from "./MenuModal";
 
-const MenuCard = ({ item }: { item: MenuItem }) => {
+interface MenuCardProps {
+    item: MenuItem;
+}
+
+const MenuCard = ({ item }: MenuCardProps) => {
     const [modalVisible, setModalVisible] = useState(false);
     const imageURL = `${item.imageUrl}?project=${appwriteConfig.projectId}`;
-
 
 
     return (
@@ -28,7 +31,7 @@ const MenuCard = ({ item }: { item: MenuItem }) => {
                 item={item}
                 visible={modalVisible}
                 onClose={() => setModalVisible(false)}
-                availableCustomisations={item.customisations ?? []} // pass an array
+                availableCustomisations={item.customisations ?? []}
             />
         </View>
     );
