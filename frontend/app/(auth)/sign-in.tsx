@@ -10,7 +10,7 @@ import useAuthStore from "@/store/auth.store";
 const SignIn = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [form, setForm] = useState({email: '', password: ''})
-    const authStore = useAuthStore(); // <- here
+    const authStore = useAuthStore();
 
 
     const submit = async () => {
@@ -25,10 +25,8 @@ const SignIn = () => {
 
             await AsyncStorage.setItem('token', token);
 
-            // update store with authenticated user
             await authStore.fetchAuthenticatedUser();
 
-            // redirect to home
             router.replace('/');
 
             const user = await getCurrentUser();

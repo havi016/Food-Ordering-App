@@ -26,7 +26,7 @@ const addUser = async (req, res, next) => {
         email.trim() === "" ||
         !password ||
         password.length < 6){
-        return res.status(422) .json({message:"invalid data"});
+        return res.status(422) .json({message:"Invalid password or email"});
     }
 
     let user;

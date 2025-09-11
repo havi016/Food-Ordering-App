@@ -5,10 +5,12 @@ import CustomInput from "@/components/CustomInput";
 import CustomButton from "@/components/CustomButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {signUp, signIn, getCurrentUser} from "@/src/api/authApi";
+import useAuthStore from "@/store/auth.store";
 
 const SignUp = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [form, setForm] = useState({ name: '', email: '', password: '' });
+    const authStore = useAuthStore();
 
     const submit = async () => {
         const { name, email, password } = form;
@@ -28,7 +30,7 @@ const SignUp = () => {
 
             await AsyncStorage.setItem("token", token);
 
-            const userResponse = await getCurrentUser()
+            await authStore.fetchAuthenticatedUser();
 
             router.replace('/');
 

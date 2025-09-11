@@ -2,7 +2,11 @@
 
 A mobile food ordering application built with **React Native** and **Expo**. The application allows users to browse a menu, search for dishes, filter by category, view item details in a modal, and add customized items to a cart. Users can securely place orders with integrated **Stripe** payment processing.
 
----
+## Demo 
+
+<img src="./frontend/assets/images/auth.png" alt="Auth Image" width="200 " />
+
+<img src="./frontend/assets/gif/walkthrough.gif" alt="Walkthrough" width="200" />
 
 ## Features
 
